@@ -101,7 +101,7 @@ jobs:
 
   pytest:
     timeout-minutes: 30
-    runs-on: {% if add_windows_tests_to_ci %} ${{ matrix.os }} {% else %} ubuntu-latest {% endif %}
+    runs-on: ${{ matrix.os }}
     needs: [pre-commit, setup, pixi_lock]
     if: needs.setup.outputs.code_change == 'true'
     strategy:
