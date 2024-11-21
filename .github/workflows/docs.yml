@@ -33,7 +33,7 @@ jobs:
       - name: Set up Pixi
         uses: prefix-dev/setup-pixi@ba3bb36eb2066252b2363392b7739741bb777659 # v0.8.1
         with:
-          environments: build
+          environments: docs
 
       - name: Build documentation
         run: pixi run docs-build

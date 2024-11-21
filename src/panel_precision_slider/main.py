@@ -39,16 +39,12 @@ class PrecisionSlider(pn.custom.PyComponent):
             icon="refresh",
             active_icon="adjustments-horizontal",
             margin=0,
-            name="Swap View",
-            tooltip="Toggle between slider and input field.",
         )
         self._show_icon = pn.widgets.ToggleIcon.from_param(
             self.param.show_step,
             icon="eye",
             active_icon="eye-off",
             margin=0,
-            name="Show Step",
-            tooltip="Toggle visibility of the step size slider.",
         )
         self._placeholder = pn.pane.Placeholder()
         self._value_input = pn.widgets.FloatInput(
@@ -56,23 +52,19 @@ class PrecisionSlider(pn.custom.PyComponent):
             start=self.param.min,
             end=self.param.max,
             step=self.param.step,
-            name="Value Input",
             width=100,
-            placeholder="Enter value",
         )
         self._value_slider = pn.widgets.FloatSlider.from_param(
             self._value_input.param.value,
             start=self.param.min,
             end=self.param.max,
             step=self.param.step,
-            name="Value Slider",
         )
         self._step_slider = pn.widgets.FloatSlider.from_param(
             self.param.step,
             start=0.001,
             step=0.001,
             visible=self.param.show_step,
-            name="Step Size Slider",
         )
         self.param.trigger("swap")
 
