@@ -1,0 +1,13 @@
+# This file is managed by Copier; DO NOT EDIT OR REMOVE.
+_commit: 19d9472
+_src_path: https://github.com/panel-extensions/copier-template-panel-extension
+add_autobump_workflow: true
+author_email: ahuang@anaconda.com
+author_name: Andrew Huang
+docs_url: https://panel-extensions.github.io/panel-precision-slider/
+github_url: https://github.com/panel-extensions/panel-precision-slider
+github_user: panel-extensions
+minimal_python_version: py310
+project_short_description: A versatile slider with fine-tuned control, adjustable
+    precision, and direct text input for exact values.
+project_slug: panel-precision-slider
