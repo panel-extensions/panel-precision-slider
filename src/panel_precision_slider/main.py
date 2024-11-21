@@ -11,14 +11,17 @@ class PrecisionSlider(pn.custom.PyComponent):
     """
 
     value = param.Number(default=5, doc="The current value of the slider/input field.")
-    min = param.Number(default=0, readonly=True, doc="The minimum allowable value.")
-    max = param.Number(default=10, readonly=True, doc="The maximum allowable value.")
-    step = param.Number(
-        default=0.1, doc="The increment step size for the slider/input field."
-    )
+
+    min = param.Number(default=0, doc="The minimum allowable value.")
+
+    max = param.Number(default=10, doc="The maximum allowable value.")
+
+    step = param.Number(default=0.1, bounds=(1e-6, None), doc="The step size for the slider/input field.")
+
     show_step = param.Boolean(
-        default=False, label="", doc="Flag to display the step size adjustment slider."
+        default=True, label="", doc="Display the step size adjustment slider."
     )
+
     swap = param.Boolean(
         default=False,
         label="",
@@ -52,7 +55,9 @@ class PrecisionSlider(pn.custom.PyComponent):
             start=self.param.min,
             end=self.param.max,
             step=self.param.step,
-            width=100,
+            width=params.get("width"),
+            min_width=params.get("min_width"),
+            max_width=params.get("max_width"),
         )
         self._value_slider = pn.widgets.FloatSlider.from_param(
             self._value_input.param.value,
@@ -62,8 +67,8 @@ class PrecisionSlider(pn.custom.PyComponent):
         )
         self._step_slider = pn.widgets.FloatSlider.from_param(
             self.param.step,
-            start=0.001,
-            step=0.001,
+            start=1e-6,
+            step=0.1,
             visible=self.param.show_step,
         )
         self.param.trigger("swap")
@@ -76,7 +81,7 @@ class PrecisionSlider(pn.custom.PyComponent):
         Otherwise, shows the value slider and step size slider.
         """
         if self.swap:
-            self._placeholder.update(self._value_input)
+            self._placeholder.update(pn.Column(self._value_input, self._step_slider))
         else:
             self._placeholder.update(pn.Column(self._value_slider, self._step_slider))
 
