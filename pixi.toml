@@ -78,7 +78,7 @@ depends_on = ["_install-ui"]
 [feature.docs.dependencies]
 mkdocs = "*"
 mkdocs-material = "*"
-mkdocstrings[python] = "*"
+mkdocstrings = "*"
 
 [environments]
 default = ["test"]
