@@ -2,14 +2,9 @@
 A module containing testing utilities and fixtures.
 """
 
-
 import pytest
 from panel.config import panel_extension
-from panel.io.reload import (
-    _local_modules,
-    _modules,
-    _watched_files,
-)
+from panel.io.reload import _local_modules, _modules, _watched_files
 from panel.io.state import state
 from panel.theme import Design
 
@@ -53,7 +48,8 @@ def module_cleanup():
 
     to_reset = list(panel_extension._imports.values())
     _default_resolver._known_models = {
-        name: model for name, model in _default_resolver._known_models.items()
+        name: model
+        for name, model in _default_resolver._known_models.items()
         if not any(model.__module__.startswith(tr) for tr in to_reset)
     }
     ReactiveMetaBase._loaded_extensions = set()
