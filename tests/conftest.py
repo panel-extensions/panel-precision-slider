@@ -34,7 +34,6 @@ def module_cleanup():
     Cleanup Panel extensions after each test.
     """
     from bokeh.core.has_props import _default_resolver
-
     from panel.reactive import ReactiveMetaBase
 
     to_reset = list(panel_extension._imports.values())
