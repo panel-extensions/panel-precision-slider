@@ -39,7 +39,7 @@ class PrecisionSlider(pn.custom.PyComponent):
 
         self._swap_icon = pn.widgets.ToggleIcon.from_param(
             self.param.swap,
-            icon="refresh",
+            icon="numbers",
             active_icon="adjustments-horizontal",
             margin=0,
         )
@@ -50,17 +50,8 @@ class PrecisionSlider(pn.custom.PyComponent):
             margin=0,
         )
         self._placeholder = pn.pane.Placeholder()
-        self._value_input = pn.widgets.FloatInput(
-            value=self.param.value,
-            start=self.param.min,
-            end=self.param.max,
-            step=self.param.step,
-            width=params.get("width"),
-            min_width=params.get("min_width"),
-            max_width=params.get("max_width"),
-        )
         self._value_slider = pn.widgets.FloatSlider.from_param(
-            self._value_input.param.value,
+            self.param.value,
             start=self.param.min,
             end=self.param.max,
             step=self.param.step,
@@ -71,6 +62,15 @@ class PrecisionSlider(pn.custom.PyComponent):
             step=0.1,
             visible=self.param.show_step,
         )
+        self._value_input = pn.widgets.FloatInput(
+            start=self.param.min,
+            end=self.param.max,
+            step=self.param.step,
+            width=params.get("width"),
+            min_width=params.get("min_width"),
+            max_width=params.get("max_width"),
+        )
+        self._value_slider.link(self._value_input, value="value", bidirectional=True)
         self.param.trigger("swap")
 
     @param.depends("swap", watch=True)

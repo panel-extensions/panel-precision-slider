@@ -66,28 +66,21 @@ You can integrate `PrecisionSlider` with other Panel widgets and layouts to buil
 
 ```python
 import panel as pn
-from panel_precision_slider import PrecisionSlider
-
-pn.extension()
-
-# Create a PrecisionSlider instance
-precision_slider = PrecisionSlider(name="Select Value", value=2.5, min=0, max=5, step=0.05)
-
-# Create a plot that reacts to the slider's value
 import numpy as np
 import holoviews as hv
+from panel_precision_slider import PrecisionSlider
 
 hv.extension('bokeh')
+pn.extension()
 
 def sine_wave(frequency):
     x = np.linspace(0, 10, 500)
     y = np.sin(2 * np.pi * frequency * x)
     return hv.Curve((x, y), 'x', 'sin(2πfx)')
 
-# Bind the slider to the sine_wave function
+precision_slider = PrecisionSlider(name="Select Value", value=2.5, min=0, max=5, step=0.05)
 sine_plot = pn.bind(sine_wave, precision_slider.param.value)
 
-# Layout the components
 layout = pn.Column(
     "### Precision Slider Example",
     precision_slider,
