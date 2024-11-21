@@ -12,7 +12,7 @@ def test_initialization():
     assert slider.min == 0
     assert slider.max == 10
     assert slider.step == 0.1
-    assert not slider.show_step
+    assert slider.show_step
     assert not slider.swap
 
 
@@ -40,7 +40,8 @@ def test_value_step():
 
 def test_swap_behavior():
     slider = PrecisionSlider(swap=True)
-    assert slider._placeholder.object is slider._value_input
+    assert slider._placeholder.object.objects[0] is slider._value_input
+    assert slider._placeholder.object.objects[1] is slider._step_slider
 
     slider.swap = False
     assert isinstance(slider._placeholder.object, pn.Column)
@@ -54,10 +55,16 @@ def test_toggle_icons():
     assert isinstance(slider._show_icon, pn.widgets.ToggleIcon)
 
 
-def test_update_on_swap_trigger():
+def test_value_linked():
     slider = PrecisionSlider()
-    slider.swap = True
-    assert slider._placeholder.object is slider._value_input
+    slider._value_slider.value = 7
+    assert slider.value == 7
+    assert slider._value_input.value == 7
 
-    slider.swap = False
-    assert isinstance(slider._placeholder.object, pn.Column)
+    slider.value = 3
+    assert slider._value_slider.value == 3
+    assert slider._value_input.value == 3
+
+    slider._value_input.value = 5
+    assert slider.value == 5
+    assert slider._value_slider.value == 5
