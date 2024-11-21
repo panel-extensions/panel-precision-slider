@@ -3,6 +3,7 @@ A module containing testing utilities and fixtures.
 """
 
 import pytest
+
 from panel.config import panel_extension
 from panel.io.reload import _local_modules, _modules, _watched_files
 from panel.io.state import state
