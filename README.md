@@ -1,15 +1,16 @@
-```jinja2
 # panel-precision-slider
 
 [![CI](https://img.shields.io/github/actions/workflow/status/panel-extensions/panel-precision-slider/ci.yml?style=flat-square&branch=main)](https://github.com/panel-extensions/panel-precision-slider/actions/workflows/ci.yml)
-[![conda-forge](https://img.shields.io/conda/vn/conda-forge/panel-precision-slider?logoColor=white&logo=conda-forge&style=flat-square)](https://prefix.dev/channels/conda-forge/packages/panel-precision-slider)
 [![pypi-version](https://img.shields.io/pypi/v/panel-precision-slider.svg?logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/panel-precision-slider)
 [![python-version](https://img.shields.io/pypi/pyversions/panel-precision-slider?logoColor=white&logo=python&style=flat-square)](https://pypi.org/project/panel-precision-slider)
+
 A versatile slider with fine-tuned control, adjustable precision, and direct text input for exact values.
 
 ## Features
 
-panel-precision-slider
+- **Toggle Between Slider and Input:** Switch between a slider and a direct input field for value selection.
+- **Adjustable Step Size:** Show or hide the step size adjustment slider to control the precision of the value.
+- **Customizable Icons:** Use toggle icons to enhance the user interface for swapping views and showing steps.
 
 ## Installation
 
@@ -35,8 +36,65 @@ pixi run test
 
 ## Usage
 
+The `PrecisionSlider` is a custom Panel component that provides a synchronized slider and input field for selecting numerical values with adjustable precision. Users can toggle between a slider and a direct input field, as well as show or hide the step size adjustment.
+
+### Basic Example
+
 ```python
-import panel_precision_slider
+import panel as pn
+from panel_precision_slider import PrecisionSlider
+
+pn.extension()
+
+# Instantiate the PrecisionSlider
+precision_slider = PrecisionSlider(
+    value=5,
+    min=0,
+    max=10,
+    step=0.1,
+    show_step=True,
+    swap=False
+)
+
+# Display the slider
+precision_slider
+```
+
+### Integrating with Other Panel Components
+
+You can integrate `PrecisionSlider` with other Panel widgets and layouts to build interactive dashboards.
+
+```python
+import panel as pn
+from panel_precision_slider import PrecisionSlider
+
+pn.extension()
+
+# Create a PrecisionSlider instance
+precision_slider = PrecisionSlider(name="Select Value", value=2.5, min=0, max=5, step=0.05)
+
+# Create a plot that reacts to the slider's value
+import numpy as np
+import holoviews as hv
+
+hv.extension('bokeh')
+
+def sine_wave(frequency):
+    x = np.linspace(0, 10, 500)
+    y = np.sin(2 * np.pi * frequency * x)
+    return hv.Curve((x, y), 'x', 'sin(2πfx)')
+
+# Bind the slider to the sine_wave function
+sine_plot = pn.bind(sine_wave, precision_slider.param.value)
+
+# Layout the components
+layout = pn.Column(
+    "### Precision Slider Example",
+    precision_slider,
+    sine_plot
+)
+
+layout.servable()
 ```
 
 ## Contributing
