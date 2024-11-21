@@ -108,15 +108,13 @@ jobs:
       fail-fast: false
       matrix:
         environment:
-        {%- for python_version in python_versions[minimal_version_index:] %}
-          - {{ python_version }}
-        {%- endfor %}
+          - test-310
+          - test-311
+          - test-312
         os:
           - ubuntu-latest
           - macos-latest
-          {% if add_windows_tests_to_ci %}
           - windows-latest
-          {% endif %}
     env:
       PANEL_LOG_LEVEL: info
     steps:
@@ -139,15 +137,13 @@ jobs:
   pytest_ui:
     name: ui:${{ matrix.environment }}:${{ matrix.os }}
     needs: [pre-commit, setup, pixi_lock]
-    runs-on: {% if add_windows_tests_to_ci %} ${{ matrix.os }} {% else %} ubuntu-latest {% endif %}
+    runs-on: ${{ matrix.os }}
     if: needs.setup.outputs.code_change == 'true'
     strategy:
       fail-fast: false
       matrix:
         environment:
-        {%- if enable_ui_tests %}
           - test-ui
-        {%- endif %}
         os:
           - ubuntu-latest
           - macos-latest
