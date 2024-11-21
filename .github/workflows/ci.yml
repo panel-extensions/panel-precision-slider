@@ -32,7 +32,7 @@ jobs:
         with:
           filters: |
             code:
-              - 'panel_precision_slider/src/**'
+              - 'src/**'
               - 'pyproject.toml'
               - '.github/workflows/ci.yaml'
 
