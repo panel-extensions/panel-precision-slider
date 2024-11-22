@@ -6,6 +6,8 @@
 
 A versatile slider with fine-tuned control, adjustable precision, and direct text input for exact values.
 
+![Export-1732234916141](https://github.com/user-attachments/assets/5ac903ae-5bcf-4d8e-af17-40d76c5d9fb3)
+
 ## Features
 
 - **Toggle Between Slider and Input:** Switch between a slider and a direct input field for value selection.
