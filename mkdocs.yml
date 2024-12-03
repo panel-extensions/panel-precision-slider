@@ -4,12 +4,25 @@ site_author: Andrew Huang
 
 repo_url: https://github.com/panel-extensions/panel-precision-slider
 repo_name: panel-extensions/panel-precision-slider
+edit_uri: edit/main/docs/
 
 theme:
     name: material
     logo: 'assets/logo.svg'
     features:
-        - content.copy.code
+        - announce.dismiss
+        - content.action.edit
+        - content.action.view
+        - content.code.annotate
+        - content.code.copy
+        - content.tooltips
+        - navigation.footer
+        - navigation.indexes
+        - navigation.sections
+        - navigation.top
+        - search.highlight
+        - search.suggest
+        - toc.follow
     palette:
         # Palette toggle for light mode
         - media: "(prefers-color-scheme: light)"
@@ -49,6 +62,7 @@ plugins:
           options:
             docstring_style: google
             show_if_no_docstring: true
+            merge_init_into_class: true
             filters:
             - "!^_"
 
@@ -58,3 +72,18 @@ watch:
 nav:
     - Home: index.md
     - Reference: reference/panel_precision_slider.md
+
+extra:
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/ahuang11
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/panel_org
+  - icon: fontawesome/brands/python
+    link: https://pypi.org/project/panel-precision-slider
+  - icon: fontawesome/brands/discourse
+    link: https://discourse.holoviz.org/
+  - icon: fontawesome/brands/discord
+    link: https://discord.com/invite/rb6gPXbdAr
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/company/panel-org
