@@ -1,8 +1,8 @@
+"""Core tests module."""
+
 import panel as pn
 
 from panel_precision_slider import PrecisionSlider
-
-pn.extension()
 
 
 def test_initialization():

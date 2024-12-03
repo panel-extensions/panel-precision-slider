@@ -59,8 +59,10 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
+          paths:
+            - src
           options:
-            docstring_style: google
+            docstring_style: numpy
             show_if_no_docstring: true
             merge_init_into_class: true
             filters:
@@ -68,6 +70,7 @@ plugins:
 
 watch:
     - docs
+    - src/panel_precision_slider
 
 nav:
     - Home: index.md
