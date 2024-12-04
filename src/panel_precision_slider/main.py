@@ -1,3 +1,5 @@
+from typing import Any
+
 import panel as pn
 import param
 
@@ -28,7 +30,7 @@ class PrecisionSlider(pn.custom.PyComponent):
         doc="Flag to toggle between the slider and input field.",
     )
 
-    def __init__(self, **params):
+    def __init__(self, **params: dict[str, Any]) -> None:
         """
         Initializes the PrecisionSlider component with the given parameters.
 
