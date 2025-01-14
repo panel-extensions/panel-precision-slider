@@ -80,6 +80,13 @@ mkdocs = "*"
 mkdocs-material = "*"
 mkdocstrings-python = "*"
 
+[feature.docs.pypi-dependencies]
+mkdocs-pycafe = "*"
+
+[feature.docs.tasks]
+docs = "mkdocs serve"
+docs-build = "mkdocs build"
+
 [environments]
 default = ["test"]
 py310 = ["py310", "test"]
