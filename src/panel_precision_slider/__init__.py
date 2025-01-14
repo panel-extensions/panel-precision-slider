@@ -1,3 +1,5 @@
+"""Accessible imports for the panel_precision_slider package."""
+
 import importlib.metadata
 import warnings
 

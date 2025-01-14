@@ -1,4 +1,4 @@
-# panel-precision-slider
+# ✨ panel-precision-slider
 
 [![CI](https://img.shields.io/github/actions/workflow/status/panel-extensions/panel-precision-slider/ci.yml?style=flat-square&branch=main)](https://github.com/panel-extensions/panel-precision-slider/actions/workflows/ci.yml)
 [![pypi-version](https://img.shields.io/pypi/v/panel-precision-slider.svg?logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/panel-precision-slider)
@@ -14,6 +14,10 @@ A versatile slider with fine-tuned control, adjustable precision, and direct tex
 - **Adjustable Step Size:** Show or hide the step size adjustment slider to control the precision of the value.
 - **Customizable Icons:** Use toggle icons to enhance the user interface for swapping views and showing steps.
 
+## Pin your version!
+
+This project is **in its early stages**, so if you find a version that suits your needs, it’s recommended to **pin your version**, as updates may introduce changes.
+
 ## Installation
 
 Install it via `pip`:
@@ -22,21 +26,38 @@ Install it via `pip`:
 pip install panel-precision-slider
 ```
 
-## Development
+## Usage
 
-This project is managed by [pixi](https://pixi.sh).
-You can install the package in development mode using:
+```python
+import panel_precision_slider
+```
+
+## Development
 
 ```bash
 git clone https://github.com/panel-extensions/panel-precision-slider
 cd panel-precision-slider
+```
 
+For a simple setup use [`uv`](https://docs.astral.sh/uv/):
+
+```bash
+uv venv
+source .venv/bin/activate # on linux. Similar commands for windows and osx
+uv pip install -e .[dev]
+pre-commit run install
+pytest tests
+```
+
+For the full Github Actions setup use [pixi](https://pixi.sh):
+
+```bash
 pixi run pre-commit-install
 pixi run postinstall
 pixi run test
 ```
 
-## Usage
+This repository is based on [copier-template-panel-extension](https://github.com/panel-extensions/copier-template-panel-extension) (you can create your own Panel extension with it)!
 
 The `PrecisionSlider` is a custom Panel component that provides a synchronized slider and input field for selecting numerical values with adjustable precision. Users can toggle between a slider and a direct input field, as well as show or hide the step size adjustment.
 
@@ -92,7 +113,9 @@ layout = pn.Column(
 layout.servable()
 ```
 
-## Contributing
+Note: `copier` will show `Conflict` for files with manual changes during an update. This is normal. As long as there are no merge conflict markers, all patches applied cleanly.
+
+## ❤️ Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
 

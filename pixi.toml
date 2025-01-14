@@ -73,12 +73,19 @@ _install-ui = 'playwright install chromium'
 
 [feature.test-ui.tasks.test-ui]
 cmd = 'pytest tests/ui --ui --browser chromium -n logical --dist loadgroup --reruns 3 --reruns-delay 10'
-depends_on = ["_install-ui"]
+depends-on = ["_install-ui"]
 
 [feature.docs.dependencies]
 mkdocs = "*"
 mkdocs-material = "*"
 mkdocstrings-python = "*"
+
+[feature.docs.pypi-dependencies]
+mkdocs-pycafe = "*"
+
+[feature.docs.tasks]
+docs = "mkdocs serve"
+docs-build = "mkdocs build"
 
 [environments]
 default = ["test"]

@@ -1,3 +1,3 @@
 # Reference
 
-::: src.panel_precision_slider
+::: panel_precision_slider

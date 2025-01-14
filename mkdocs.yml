@@ -1,6 +1,6 @@
 site_name: panel-precision-slider
-site_description: A versatile slider with fine-tuned control, adjustable precision, and direct text input for exact values.
-site_author: Andrew Huang
+site_description: "A versatile slider with fine-tuned control, adjustable precision, and direct text input for exact values."
+site_author: "Andrew Huang"
 
 repo_url: https://github.com/panel-extensions/panel-precision-slider
 repo_name: panel-extensions/panel-precision-slider
@@ -51,16 +51,34 @@ markdown_extensions:
         custom_checkbox: true
     - pymdownx.inlinehilite
     - pymdownx.snippets
-    - pymdownx.superfences
     - admonition
+    - pymdownx.superfences:
+        custom_fences:
+          - name: python
+            class: 'highlight'
+            validator: !!python/name:mkdocs_pycafe.validator
+            format: !!python/object/apply:mkdocs_pycafe.formatter
+              kwds:
+                type: panel
+                requirements: |
+                  # Add any other requirements here
+                  # see https://mkdocs.py.cafe/en/latest/ for more info
+                  panel
+                  panel_precision_slider
+                link_text: |
+                  <img src="https://py.cafe/logos/pycafe_logo.png" style="height: 24px"> **Run and edit this code in Py.Cafe**
+    - pymdownx.snippets:
+        url_download: true
 
 plugins:
   - search
   - mkdocstrings:
       handlers:
         python:
+          paths:
+            - src
           options:
-            docstring_style: google
+            docstring_style: numpy
             show_if_no_docstring: true
             merge_init_into_class: true
             filters:
@@ -68,15 +86,17 @@ plugins:
 
 watch:
     - docs
+    - src/panel_precision_slider
 
 nav:
     - Home: index.md
+    - Examples: examples.md
     - Reference: reference/panel_precision_slider.md
 
 extra:
   social:
   - icon: fontawesome/brands/github
-    link: https://github.com/ahuang11
+    link: https://github.com/panel-extensions
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/panel_org
   - icon: fontawesome/brands/python
